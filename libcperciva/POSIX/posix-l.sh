@@ -1,4 +1,10 @@
 # Should be sourced by `command -p sh posix-l.sh "$PATH"` from within a Makefile.
+# Sanity check env variables
+if [ -z "${CC}" ]; then
+	echo "\$CC is not defined!  Cannot run any compiler tests." 1>&2
+	exit 1
+fi
+
 if ! [ ${PATH} = "$1" ]; then
 	echo "WARNING: POSIX violation: $SHELL's command -p resets \$PATH" 1>&2
 	PATH=$1
